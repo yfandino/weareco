@@ -6,6 +6,7 @@ use classes\CabFactura;
 class ConexionBD {
     public $conexion;
     private $host = 'localhost';
+//    private $host = 'weareco.cwfvpzo0pnrq.us-east-2.rds.amazonaws.com';
     private $user = 'weareco';
     private $pass = 'admin123';
     private $bbdd = 'weareco';

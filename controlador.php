@@ -4,6 +4,7 @@ require_once "classes/Producto.php";
 require_once "classes/Direccion.php";
 require_once "classes/CabFactura.php";
 require_once "classes/ConexionBD.php";
+use classes\Cliente;
 session_start();
 
     $conexion = new ConexionBD();
@@ -25,20 +26,15 @@ session_start();
         $conexion = new ConexionBD();
         $cliente = new Cliente($_POST["username"]);
         // Verificar que las contraseñas sean iguales
-        if ($_POST["password"] == $_POST["confirmpass"]) {
-
-            $cliente->setPassword(password_hash($_POST["password"], PASSWORD_DEFAULT));
-            $registrado = $conexion->registerUser($cliente);
-            // Verificar que se ha registrado el usuario correctamente
-            if ($registrado) {
-                $_SESSION["password_error"] = false;
-                header('Location: index.php');
-            } else {
-                echo "<a style='margin-left:10%' href='registro.php'>Volver</a>";
-            }
+        $cliente->setPassword(password_hash($_POST["password"], PASSWORD_DEFAULT));
+        $registrado = $conexion->registerUser($cliente);
+        echo $registrado;
+        // Verificar que se ha registrado el usuario correctamente
+        if ($registrado) {
+            $_SESSION["password_error"] = false;
+            header('Location: index.php');
         } else {
-            $_SESSION["password_error"] = true;
-            header("Refresh:0");
+            echo "<a style='margin-left:10%' href='registro.php'>Volver</a>";
         }
         $conexion->close_conn();
     }

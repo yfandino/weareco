@@ -1,5 +1,5 @@
 <?php
-require_once 'classes\ConexionBD.php';
+require_once 'classes/ConexionBD.php';
 $title = 'ElectroShop - Carrito de compra';
 require_once 'head.php';
 
