@@ -119,7 +119,11 @@ class ConexionBD {
     		$producto = $producto = new Producto($fila["id_producto"],$fila["nombre"],
     				                             $fila["descripcion"], $fila["stock"],
     				                             $fila["precio"], $fila["img"]);
-    		array_push($carrito, $producto);
+    		if (isset($carrito[$producto->getId()])) {
+    		    $producto = $carrito[$producto->getId()];
+    		    $producto->setCantidad($producto->getCantidad()+1);
+            }
+    		$carrito[$producto->getId()] = $producto;
     		$_SESSION["carrito"] = $carrito;
     	} catch (Exception $e) {
     		echo "<div class='error'>Ops.. Parece que ha ocurrido un error.</div>";
@@ -154,7 +158,6 @@ class ConexionBD {
 				  WHERE id_cliente = {$cliente->getId()}
     			  AND nombre IS NOT NULL
 				  AND apellidos IS NOT NULL
-				  AND dni IS NOT NULL
 				  AND email IS NOT NULL
 				  AND telefono IS NOT NULL;";
     	try {
@@ -165,10 +168,8 @@ class ConexionBD {
     			$fila = mysqli_fetch_assoc($resultado);
     			$cliente->setNombre($fila["nombre"]);
     			$cliente->setApellidos($fila["apellidos"]);
-    			$cliente->setDni($fila["dni"]);
     			$cliente->setEmail($fila["email"]);
     			$cliente->setTelefono($fila["telefono"]);
-    			$cliente->setProfesion($fila["profesion"]);
     			$_SESSION["cliente"] = $cliente;
     			return true;
     		}
@@ -177,14 +178,12 @@ class ConexionBD {
     }
     
     // Metodo para modificar los datos del cliente
-    public function modificarDatos(Cliente $cliente, $nombre,$apellidos,$dni,$email,$tel,$profesion) {
+    public function modificarDatos(Cliente $cliente, $nombre,$apellidos,$email,$tel) {
     	$query = "UPDATE clientes
 				  SET nombre = '$nombre',
     	              apellidos = '$apellidos',
-    	              dni = '$dni',
     	              email = '$email',
-    	              telefono = '$tel',
-    	              profesion = '$profesion'
+    	              telefono = '$tel'
                   WHERE id_cliente = {$cliente->getId()};";
     	try {
     		$resultado = mysqli_query($this->conexion, $query);
@@ -195,6 +194,7 @@ class ConexionBD {
     		}
     	} catch (Exception $e) {
     		echo "<div class='error'>Ops.. Parece que ha ocurrido un error.</div>";
+    		echo $query;
     	}
     }
     

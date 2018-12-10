@@ -12,7 +12,7 @@
                 echo "<div style='text-align: right'> La contraseña no coincide</div>";
             }
             ?>
-            <button class="button" type="submit">Registrar</button>
+            <button class="btn" type="submit">Registrar</button>
             <div class="has-account" id="goToLogin">¿Ya tienes una cuenta? Iniciar sesión</div>
         </form>
         <form action="controlador.php" method="post" class="login-form">
@@ -29,7 +29,7 @@
             }
             $_SESSION["error_login"] = null;
             ?>
-            <button class="button">Entrar</button><br>
+            <button class="btn">Entrar</button><br>
             <div class="has-account" id="goToRegister">¿No tienes una cuenta? Regístrate</div>
         </form>
         <div class="clear"></div>

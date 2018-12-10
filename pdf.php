@@ -1,7 +1,9 @@
 <?php
 
 require('fpdf\fpdf.php');
-require_once 'classes\ConexionBD.php';
+require_once 'classes/Cliente.php';
+require_once 'classes/Direccion.php';
+require_once 'classes/ConexionBD.php';
 session_start();
 
 class PDF extends FPDF {

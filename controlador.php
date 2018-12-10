@@ -8,7 +8,7 @@ session_start();
 
     $conexion = new ConexionBD();
 
-    if($_POST["accion"]) {
+    if(isset($_POST["accion"])) {
         $accion = $_POST["accion"];
     } else {
         $accion = $_GET["accion"];
@@ -68,12 +68,10 @@ session_start();
 	if ($accion == 'insertDatos') {
 		$nombre = $_GET["nombre"];
 		$apellidos = $_GET["apellidos"];
-		$dni = $_GET["dni"];
 		$email = $_GET["email"];
 		$tel = $_GET["tel"];
-		$profesion = $_GET["profesion"];
 		$conexion->modificarDatos($_SESSION["cliente"], $nombre,
-				                  $apellidos, $dni, $email, $tel, $profesion);
+				                  $apellidos, $email, $tel);
 	}
 	
 	// Añadir direcciones si no se tienen.

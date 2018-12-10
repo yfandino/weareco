@@ -1,5 +1,7 @@
 <?php
-require_once 'classes\ConexionBD.php';
+require_once 'classes/CabFactura.php';
+require_once 'classes/Direccion/.php';
+require_once 'classes/ConexionBD.php';
 $title = 'ElectroShop - Direcciones';
 require_once 'head.php';
 
@@ -85,7 +87,7 @@ if (!$login) {
 			<div class="cart-tit">Total</div>
 			<div><?php echo number_format($detalle["total"],2,',','.')."€";?></div>
 		</div>
-		<a class="button" target="_blank" style="position: absolute; right: 30px; top: 30px" href="pdf.php?id=<?php echo $_GET["id"]?>">Imprimir</a>
+		<a class="btn" target="_blank" style="position: absolute; right: 30px; top: 30px" href="pdf.php?id=<?php echo $_GET["id"]?>">Imprimir</a>
 		<?php 
 		} else {
 			echo "Ops... Ha ocurrido un problema.";

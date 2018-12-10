@@ -1,5 +1,6 @@
 <?php
-require_once 'classes\ConexionBD.php';
+require_once 'classes/Direccion.php';
+require_once 'classes/ConexionBD.php';
 $title = 'ElectroShop - Direcciones';
 require_once 'head.php';
 
@@ -25,23 +26,19 @@ if (!$login) {
   			<div class="datos-cont">
   				<span>Nombre: <?php echo $cliente->getNombre() ?></span><br>
   				<span>Apellidos: <?php echo $cliente->getApellidos() ?></span><br>
-  				<span>DNI: <?php echo $cliente->getDni() ?></span><br>
   				<span>Email: <?php echo $cliente->getEmail() ?></span><br>
   				<span>Teléfono: <?php echo $cliente->getTelefono() ?></span><br>
-  				<span>Profesión: <?php echo $cliente->getProfesion() ?></span><br><br>
-  				<button id="modificar" class="button">Modificar</button>
+  				<button id="modificar" class="btn">Modificar</button>
   				
   				<!-- FORMULARIO PARA EDITAR DATOS DEL CLIENTE -->
   				<form class="login-form no-display" action="controlador.php">
 	  				<input type="hidden" name="accion" value="insertDatos">
 	  				<input class="input" type="text" name="nombre" placeholder="Nombre" required><br>
 	  				<input class="input" type="text" name="apellidos" placeholder="apellidos" required><br>
-	  				<input class="input" type="text" name="dni" placeholder="dni" required><br>
 	  				<input class="input" type="text" name="email" placeholder="email" required><br>
 	  				<input class="input" type="tel" name="tel" placeholder="Teléfono" required><br>
-	  				<input class="input" type="text" name="profesion" placeholder="Profesión"><br>
-	  				<button class="button" type="submit">Aceptar</button>
-	  				<button class="button" type="reset">Reestablecer</button>
+	  				<button class="btn" type="submit">Aceptar</button>
+	  				<button class="btn" type="reset">Reestablecer</button>
   				</form>
   			</div>
   		<?php	
@@ -53,12 +50,10 @@ if (!$login) {
   				<input type="hidden" name="accion" value="insertDatos">
   				<input class="input" type="text" name="nombre" placeholder="Nombre" required><br>
   				<input class="input" type="text" name="apellidos" placeholder="apellidos" required><br>
-  				<input class="input" type="text" name="dni" placeholder="dni" required><br>
   				<input class="input" type="text" name="email" placeholder="email" required><br>
   				<input class="input" type="tel" name="tel" placeholder="Teléfono" required><br>
-  				<input class="input" type="text" name="profesion" placeholder="Profesión"><br>
-  				<button class="button" type="submit">Aceptar</button>
-  				<button class="button" type="reset">Reestablecer</button>
+  				<button class="btn" type="submit">Aceptar</button>
+  				<button class="btn" type="reset">Reestablecer</button>
   			</form>
   		</div>
   		<?php
@@ -85,7 +80,7 @@ if (!$login) {
   					} else {
   						echo "facturación";
   					} ?></span><br>
-  				<button id="<?php echo $direccion->getId()?>" class="button modificar-dir">Modificar</button>
+  				<button id="<?php echo $direccion->getId()?>" class="btn modificar-dir">Modificar</button>
   			</div>
   		<?php
   			}
@@ -102,8 +97,8 @@ if (!$login) {
   					<option class="input" value="fac">Facturación</option>
   					<option class="input" value="env">Envío</option>
   				</select>
-  				<button class="button" type="submit">Aceptar</button>
-  				<button class="button" type="reset">Reestablecer</button>
+  				<button class="btn" type="submit">Aceptar</button>
+  				<button class="btn" type="reset">Reestablecer</button>
   			</form>
   		</div>
   		<?php
@@ -117,15 +112,15 @@ if (!$login) {
   				<input class="input" type="text" name="ciudad" placeholder="Ciudad" required><br>
   				<input class="input" type="text" name="cp" placeholder="Código Postal" required><br>
   				<label><input type="checkbox" name="esDeEnvio" value="1"> Tambíen es mi dirección de envío</label><br>
-  				<button class="button" type="submit">Aceptar</button>
-  				<button class="button" type="reset">Reestablecer</button>
+  				<button class="btn" type="submit">Aceptar</button>
+  				<button class="btn" type="reset">Reestablecer</button>
   			</form>
   		</div>
   		<?php 
   		}
   		?>
   		<br>
-  		<a class="button" href="controlador.php?accion=tramitarCompra">Finalizar Compra</a>
+  		<a class="btn" href="controlador.php?accion=tramitarCompra">Finalizar Compra</a>
   	</div>
 </body>
 <script>
