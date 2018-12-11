@@ -3,13 +3,13 @@
         <form action="controlador.php" method="post" class="register-form" name="register" style="display: none;">
             <h2>Crear nueva cuenta</h2>
             <input class="input" type="hidden" name="accion" value="register">
-            <input class="input" type="text" name="username" placeholder="Usuario"><br>
-            <input class="input" type="text" name="email" placeholder="Correo electrónico"><br>
-            <input class="input" type="password" name="password" placeholder="Contraseña"><br>
+            <input class="input" type="text" name="username" placeholder="Usuario" required><br>
+            <input class="input" type="text" name="email" placeholder="Correo electrónico" required><br>
+            <input class="input" type="password" name="password" placeholder="Contraseña" required><br>
             <?php
-            // Mostrar error en caso de fallar la coincidencia de la contraseña
-            if (isset($_SESSION["password_error"]) && $_SESSION["password_error"] == true) {
-                echo "<div style='text-align: right'> La contraseña no coincide</div>";
+            // Mostrar error
+            if (isset($_SESSION["error-reg"])) {
+                echo "<div style='text-align: right'>{$_SESSION["error-reg"]}</div>";
             }
             ?>
             <button class="btn" type="submit">Registrar</button>
@@ -18,16 +18,13 @@
         <form action="controlador.php" method="post" class="login-form">
             <h2>Iniciar Sesión</h2>
             <input class="input" type="hidden" name="accion" value="login">
-            <input class="input" type="text" name="username" placeholder="Usuario"><br>
-            <input class="input" type="password" name="password" placeholder="Contraseña"><br>
+            <input class="input" type="text" name="username" placeholder="Usuario" required><br>
+            <input class="input" type="password" name="password" placeholder="Contraseña" required><br>
             <?php
             // Mostrar errores si falla el inicio de sesion
-            if (isset($_SESSION["error_login"]) && $_SESSION["error_login"] == 'Error 1') {
-                echo "<div>El usuario o contraseña no coincide</div>";
-            } elseif (isset($_SESSION["error_login"]) && $_SESSION["error_login"] == 'Error 2') {
-                echo "<div>No existe el nombre de usuario</div>";
+            if (isset($_SESSION["error-login"])) {
+                echo "<div>{$_SESSION["error-login"]}</div>";
             }
-            $_SESSION["error_login"] = null;
             ?>
             <button class="btn">Entrar</button><br>
             <div class="has-account" id="goToRegister">¿No tienes una cuenta? Regístrate</div>
@@ -38,6 +35,7 @@
     </div>
 </div>
 <script>
+    var form;
     $("#goToLogin").on("click", function() {
         $(".login-form").show();
         $(".register-form").hide();
@@ -50,5 +48,20 @@
     });
     $("#show-modal").on("click", function() {
         $(".account-container").show();
-    })
+    });
+<?php
+    if (isset($_SESSION['error-reg'])) {
+        echo "form = 'register-form';";
+        unset($_SESSION["error-reg"]);
+    }
+    if (isset($_SESSION['error-login'])) {
+        echo "form = 'login-form';";
+        unset($_SESSION["error-login"]);
+    }
+?>
+    if (form) {
+        $('.account-container').show();
+        $('[class$="form"]').hide();
+        $('.'+form).show();
+    }
 </script>

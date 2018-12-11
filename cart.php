@@ -64,7 +64,7 @@ if (!$login) {
         echo "</table>";
         // SI EXISTEN PRODUCTOS EN EL CARRO MUESTRA PRECIO, SI NO UN MENSAJE
         if (isset($_SESSION["carrito"])) {
-            echo "<div class='btn-container' colspan='4'> Total: " . number_format($total, 2, ',', '.') . "€</div>";
+            echo "<div class='btn-container'> Total: " . number_format($total, 2, ',', '.') . "€</div>";
             echo "<div colspan='4' class='btn-container'><a href='seldireccion.php' class='btn'>Continuar</a></div>";
         } else {
             echo "<div class='error'>No tiene productos en el carro de compra.</div>";

@@ -49,15 +49,13 @@ class ConexionBD {
                   VALUES ('{$cliente->getUsername()}','{$cliente->getPassword()}');";
     	try {
     		$resultado = @mysqli_query($this->conexion, $query);
-    		if (!$resultado) {
-    			throw new Exception;
-    		}
+    		if (!$resultado) throw new Exception;
     		return true;
     	} catch (Exception $e) {
     		if (mysqli_errno($this->conexion) == 1062) {
-    			echo "<div class='error'>El nombre de usuario ya existe</div>";
+    			$_SESSION['error-reg'] = "El nombre de usuario ya existe";
     		} else {
-    			echo "<div class='error'>En este momento no podemos procesar su solicitud.</div>";
+                $_SESSION['error-reg'] = "En este momento no podemos procesar su solicitud";
     		}
     		return false;
     	}
@@ -77,14 +75,14 @@ class ConexionBD {
     				$_SESSION["cliente"] = $cliente;
     				return true;
     			} else {
-    				throw new Exception("Error 1");
+    				throw new Exception("El usuario o contraseña no coincide");
     			}
     		} else {
-    			throw new Exception("Error 2");
+    			throw new Exception("No existe el nombre de usuario");
     		}
     	} catch (Exception $e) {
     		echo $e->getMessage();
-    		$_SESSION["error_login"] = $e->getMessage();
+    		$_SESSION["error-login"] = $e->getMessage();
     		header('Location: index.php');
     		return false;
     	}
@@ -268,31 +266,31 @@ class ConexionBD {
     	
 	    foreach ($carrito as $producto) {
 	    	// Verificar si la cantidad seleccionada está disponible
-	    	if ($producto->getStock() > $producto->getCantidad()) {
+	    	if ($producto->getStock() >= $producto->getCantidad()) {
 		    	$total += ($producto->getPrecio()*$producto->getCantidad());
 	    	} else {
 	    		return false;
 	    	}
 	    }
 	    	
-	    	$idFactura = $this->generarCodigo();
-		    $query = "INSERT INTO cab_factura (id_factura, fact2cliente, total)
-	                  VALUES ($idFactura,{$cliente->getId()}, $total);";
-	    	try {
-	    		$resultado = mysqli_query($this->conexion, $query);
-	    		if (!$resultado) {
-	    			throw new Exception();
-	    		} else {
-	    			$isOk = $this->tramitarCarro($idFactura);
-	    			if ($isOk) {
-	    				return $idFactura;
-	    			} else {
-	    				throw new Exception();
-	    			}
-	    		}
-	    	} catch (Exception $e) {
-	    		mysqli_rollback($this->conexion);
-	    	}
+        $idFactura = $this->generarCodigo();
+        $query = "INSERT INTO cab_factura (id_factura, fact2cliente, total)
+                  VALUES ($idFactura,{$cliente->getId()}, $total);";
+        try {
+            $resultado = mysqli_query($this->conexion, $query);
+            if (!$resultado) {
+                throw new Exception();
+            } else {
+                $isOk = $this->tramitarCarro($idFactura);
+                if ($isOk) {
+                    return $idFactura;
+                } else {
+                    throw new Exception();
+                }
+            }
+        } catch (Exception $e) {
+            mysqli_rollback($this->conexion);
+        }
     }
     
     // Metodo que tramita los productos del carro - Inserta a det_factura

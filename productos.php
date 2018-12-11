@@ -2,11 +2,6 @@
 $title = 'ElectroShop - Tu tienda online';
 require_once 'classes/ConexionBD.php';
 require_once 'head.php';
-// VERIFICAR INICIO DE SESION
-if (!isset($_SESSION["cliente"])) {
-	echo "<div class='error'>Debe iniciar sesión para ver esta página</div>";
-} else {
-	$cliente = $_SESSION["cliente"];
 ?>
   	<div class="product-list">
   	<?php 
@@ -37,8 +32,5 @@ if (!isset($_SESSION["cliente"])) {
   	}
 	?>
 	</div>
-<?php
-}
-?>
 </body>
 </html>

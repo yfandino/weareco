@@ -280,7 +280,24 @@ form button {
 	border: 1px solid #00C853;
 	background-color: #fff;
 }
-
+/*
+	SEL DIRECCION
+*/
+.datos-cont {
+	margin: 32px 64px;
+}
+.direcc-cont {
+	display: inline-block;
+	margin: 32px 64px;
+}
+.end-purchase {
+	position: absolute;
+	right: 64px;
+	text-transform: uppercase;
+	color: #707070;
+	font-weight: 300;
+	font-size: 1.2em;
+}
 /*
 	OTROS
 */
@@ -297,6 +314,6 @@ form button {
 	box-shadow: 0px 0px 2px 2px gray;
 	text-align: center;
 }
-.no-display {
+.no-display, .no-display-dir {
 	display: none;
 }

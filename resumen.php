@@ -1,6 +1,6 @@
 <?php
 require_once 'classes/CabFactura.php';
-require_once 'classes/Direccion/.php';
+require_once 'classes/Direccion.php';
 require_once 'classes/ConexionBD.php';
 $title = 'ElectroShop - Direcciones';
 require_once 'head.php';
@@ -30,8 +30,7 @@ if (!$login) {
 	  	<?php
 	  	$listaDirecciones = $conexion->getDirecciones($cliente);
   		if ($listaDirecciones) {
-  			for ($i = 0; $i < count($listaDirecciones); $i++) {
-  				$direccion = $listaDirecciones[$i];
+  			foreach ($listaDirecciones as $direccion) {
   		?>
   			<!-- DIRECCIONES DEL CLIENTE -->
   			<div class="direcc-cont">
@@ -51,42 +50,45 @@ if (!$login) {
   		}
 		?>
 		<h2>Detalles de la compra</h2>
+        <table class="items">
+            <thead>
+            <tr>
+                <th class="cart-prod">Producto</th>
+                <th class="cart-cant">Cant.</th>
+                <th class="cart-price">Precio</th>
+                <th class="cart-price">Total</th>
+            </tr>
+            </thead>
 		<?php 
 		$listaProductos = $conexion->getDetallesFactura($_GET["id"]);
 		if ($listaProductos) {
 			foreach ($listaProductos as $detalle) {
 		?>
 				<!-- Producto -->
-				<div class="cart-prod">
-					<div class="cart-des">
-						<div class="cart-tit"><?php echo $detalle["nombre"]?></div>
-						<div><?php //echo ?></div>
-					</div>
-					<div class="cart-item">
-						<div class="cart-tit">Cant.</div>
-						<div><?php echo $detalle["cant"] ?></div>
-					</div>
-					<div class="cart-item">
-						<div class="cart-tit">Precio Und.</div>
-						<div><?php echo number_format($detalle["precio"],2,',','.')."€"?></div>
-					</div>
-					<div class="cart-item">
-						<div class="cart-tit">Precio</div>
-						<div><?php 
-							        $precio = $detalle["cant"] * $detalle["precio"];
-							        echo number_format($precio,2,',','.')."€"
-							 ?>
-						</div>
-					</div>
-				</div>
+            <tr class="item">
+                <td class="cart-prod">
+                    <div class="cart-tit"><?php echo $detalle["nombre"]?></div>
+                </td>
+                <td class="cart-cant">
+                    <?php echo $detalle["cant"] ?>
+                </td>
+                <td class="cart-price">
+                    <div><?php echo number_format($detalle["precio"],2,',','.')."€"?></div>
+                </td>
+                <td class="cart-price">
+                    <div><?php
+                        $precio = $detalle["cant"] * $detalle["precio"];
+                        echo number_format($precio,2,',','.')."€"
+                        ?>
+                    </div>
+                </td>
+            </tr>
 		<?php
 			}
 		?>
 		<!-- Total -->
-		<div class="cart-item" style="position: absolute; right: 30px">
-			<div class="cart-tit">Total</div>
-			<div><?php echo number_format($detalle["total"],2,',','.')."€";?></div>
-		</div>
+        </table>
+        <div class='btn-container'> Total: <?php echo number_format($detalle["total"],2,',','.')."€";?></div>
 		<a class="btn" target="_blank" style="position: absolute; right: 30px; top: 30px" href="pdf.php?id=<?php echo $_GET["id"]?>">Imprimir</a>
 		<?php 
 		} else {

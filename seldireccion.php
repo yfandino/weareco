@@ -15,7 +15,6 @@ if (!$login) {
 	$cliente = $_SESSION["cliente"];
 ?>
 <body>
-	<?php require_once 'header.php' ?>
   	<div class="content">
   	<!-- DATOS DEL CLIENTE -->
   		<h2>Datos del cliente</h2>
@@ -31,15 +30,17 @@ if (!$login) {
   				<button id="modificar" class="btn">Modificar</button>
   				
   				<!-- FORMULARIO PARA EDITAR DATOS DEL CLIENTE -->
-  				<form class="login-form no-display" action="controlador.php">
-	  				<input type="hidden" name="accion" value="insertDatos">
-	  				<input class="input" type="text" name="nombre" placeholder="Nombre" required><br>
-	  				<input class="input" type="text" name="apellidos" placeholder="apellidos" required><br>
-	  				<input class="input" type="text" name="email" placeholder="email" required><br>
-	  				<input class="input" type="tel" name="tel" placeholder="Teléfono" required><br>
-	  				<button class="btn" type="submit">Aceptar</button>
-	  				<button class="btn" type="reset">Reestablecer</button>
-  				</form>
+                <div>
+                    <form class="login-form no-display" action="controlador.php">
+                        <input type="hidden" name="accion" value="insertDatos">
+                        <input class="input" type="text" name="nombre" placeholder="Nombre" required><br>
+                        <input class="input" type="text" name="apellidos" placeholder="apellidos" required><br>
+                        <input class="input" type="text" name="email" placeholder="email" required><br>
+                        <input class="input" type="tel" name="tel" placeholder="Teléfono" required><br>
+                        <button class="btn" type="submit">Aceptar</button>
+                        <button class="btn" type="reset">Reestablecer</button>
+                    </form>
+                </div>
   			</div>
   		<?php	
   		} else {
@@ -86,7 +87,7 @@ if (!$login) {
   			}
   		?>
   		<!-- FORMULARIO PARA EDITAR UNA DIRECCION -->
-  		<div class="datos-cont">
+  		<div>
   			<form class="login-form no-display-dir" action="controlador.php">
 	  			<input type="hidden" name="accion" value="updateDir">
 	  			<input type="hidden" name="id" id="id_prod">
@@ -120,7 +121,7 @@ if (!$login) {
   		}
   		?>
   		<br>
-  		<a class="btn" href="controlador.php?accion=tramitarCompra">Finalizar Compra</a>
+  		<a class="end-purchase" href="controlador.php?accion=tramitarCompra">Finalizar Compra</a>
   	</div>
 </body>
 <script>

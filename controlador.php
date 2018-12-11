@@ -22,20 +22,15 @@ session_start();
 
 	if ($accion == 'register') {
         // Procesar datos del formulario
-        $_SESSION["password_error"] = false;
         $conexion = new ConexionBD();
-        $cliente = new Cliente($_POST["username"]);
-        // Verificar que las contraseñas sean iguales
-        $cliente->setPassword(password_hash($_POST["password"], PASSWORD_DEFAULT));
+        $cliente = new Cliente(trim($_POST["username"]));
+        $cliente->setPassword(password_hash(trim($_POST["password"]), PASSWORD_DEFAULT));
         $registrado = $conexion->registerUser($cliente);
-        echo $registrado;
         // Verificar que se ha registrado el usuario correctamente
         if ($registrado) {
-            $_SESSION["password_error"] = false;
-            header('Location: index.php');
-        } else {
-            echo "<a style='margin-left:10%' href='registro.php'>Volver</a>";
+            $login = $conexion->loginUser($_POST["username"], $_POST["password"]);
         }
+        header('Location: index.php');
         $conexion->close_conn();
     }
 
