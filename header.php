@@ -1,5 +1,5 @@
 <header>
-    <div class="logo"><a href="#">weareco</a></div>
+    <div class="logo"><a href="index.php">weareco</a></div>
     <nav class="menu">
         <ul>
             <li><a href="index.php">Inicio</a></li>
