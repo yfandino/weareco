@@ -28,7 +28,7 @@ DROP TABLE IF EXISTS `cab_factura`;
 CREATE TABLE IF NOT EXISTS `cab_factura` (
   `id_factura` int(11) NOT NULL,
   `fact2cliente` int(11) NOT NULL,
-  `total` int(11) NOT NULL,
+  `total` float(11,2) NOT NULL,
   PRIMARY KEY (`id_factura`),
   KEY `fact2cliente` (`fact2cliente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `clientes` (
   `password` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
   `nombre` varchar(25) COLLATE utf8_spanish_ci DEFAULT NULL,
   `apellidos` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `email` varchar(256) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
   `telefono` varchar(9) COLLATE utf8_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`id_cliente`),
   UNIQUE KEY `usuario` (`username`),
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `det_factura` (
   `det2fact` int(11) NOT NULL,
   `det2prod` int(11) NOT NULL,
   `cant` int(11) NOT NULL,
-  `precio` int(11) NOT NULL,
+  `precio` float(11,2) NOT NULL,
   PRIMARY KEY (`id_detalle`),
   KEY `det2fact` (`det2fact`),
   KEY `det2prod` (`det2prod`)
@@ -116,7 +116,7 @@ CREATE TABLE IF NOT EXISTS `productos` (
   `nombre` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `descripcion` text COLLATE utf8_spanish_ci NOT NULL,
   `stock` int(11) NOT NULL,
-  `precio` int(11) NOT NULL,
+  `precio` float(11,2) NOT NULL,
   `img` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`id_producto`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -149,4 +149,11 @@ ALTER TABLE `direcciones`
 --
 ALTER TABLE `donaciones`
   ADD CONSTRAINT `donaciones_ibfk_1` FOREIGN KEY (`don2fact`) REFERENCES `cab_factura` (`id_factura`) ON DELETE NO ACTION ON UPDATE CASCADE;
+COMMIT;
+
+INSERT INTO `productos` (`nombre`, `descripcion`, `stock`, `precio`, `img`) VALUES
+('Panda', 'Sunglasses eco', 100, 14.99, 'model1.png'),
+('Rhino', 'Sunglasses eco', 100, 19.99, 'model2.jpg'),
+('Dust', 'Sunglasses eco', 100, 29.99, 'model3.jpg'),
+('Beach', 'Sunglasses eco', 100, 24.99, 'model4.jpg');
 COMMIT;

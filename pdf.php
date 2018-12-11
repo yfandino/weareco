@@ -101,7 +101,7 @@ $pdf->imprimirTexto("Paseo La castellana, 50",140,3,8,0);
 $pdf->imprimirTexto("Nro. Factura: $id",140,3,12,1);
 $pdf->imprimirTexto("Madrid, 28000",0,3,8,1);
 $pdf->imprimirTexto("Tel: 615000111",0,3,8,1);
-$pdf->imprimirTexto("Email: info@electroshop.es",0,3,8,1);
+$pdf->imprimirTexto("Email: info@weareco.com",0,3,8,1);
 
 $pdf->Ln(10);
 

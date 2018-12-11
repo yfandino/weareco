@@ -317,3 +317,8 @@ form button {
 .no-display, .no-display-dir {
 	display: none;
 }
+.btn-print {
+	position: absolute;
+	right: 64px;
+	top: 30px
+}

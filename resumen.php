@@ -18,7 +18,7 @@ if (!$login) {
 	?>
 <body>
 	<?php require_once 'header.php' ?>
-  	<div class="content">
+  	<div class="content" style="position: relative">
   	<h2>Resúmen de la compra</h2>
   	<!-- DETALLES DEL CLIENTE -->
 	  	<div class="direcc-cont">
@@ -89,7 +89,7 @@ if (!$login) {
 		<!-- Total -->
         </table>
         <div class='btn-container'> Total: <?php echo number_format($detalle["total"],2,',','.')."€";?></div>
-		<a class="btn" target="_blank" style="position: absolute; right: 30px; top: 30px" href="pdf.php?id=<?php echo $_GET["id"]?>">Imprimir</a>
+		<a class="btn btn-print" target="_blank" href="pdf.php?id=<?php echo $_GET["id"]?>">Imprimir</a>
 		<?php 
 		} else {
 			echo "Ops... Ha ocurrido un problema.";
