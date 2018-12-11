@@ -19,7 +19,7 @@ require_once 'head.php';
 				<span><?php echo number_format((float)$producto->getPrecio(),2,',','.')."€" ?></span>
 			</div>
             <div class="prod-details">
-                <a href="detalles?id=<?php echo $producto->getId() ?>">Ver detalles</a>
+                <a href="detalles.php?id=<?php echo $producto->getId() ?>">Ver detalles</a>
             </div>
             <?php if ($producto->getStock() > 0 ) {?>
                 <div class="add-to-cart">

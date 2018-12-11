@@ -187,7 +187,7 @@ form button {
 	font-weight: 600;
 	font-size: 1.2em;
 	margin-bottom: 16px;
-
+	color: #00C853;
 }
 .prod-price span{
 	color: #00C853;
@@ -299,8 +299,36 @@ form button {
 	font-size: 1.2em;
 }
 /*
+	DETAILS
+ */
+.details {
+	width: 90%;
+	margin: 32px auto;
+	padding: 32px 0px;
+}
+.details-img img {
+	width: 90%;
+}
+.details-info h2 {
+	font-size: 1.5em;
+	font-weight: 400;
+	margin-bottom: 8px;
+}
+.details-info p {
+	min-height: 250px;
+	margin: 24px 0;
+}
+/*
 	OTROS
 */
+.left {
+	float: left;
+	width: 50%;
+}
+.right {
+	float: right;
+	width: 50%;
+}
 .clear {
 	clear: both;
 }
@@ -321,4 +349,8 @@ form button {
 	position: absolute;
 	right: 64px;
 	top: 30px
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+	opacity: 1;
 }

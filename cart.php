@@ -14,7 +14,8 @@ if (!$login) {
     $cliente = $_SESSION["cliente"];
     // SI SE ESTA AÑADIENDO UN PRODUCTO SE LLAMA A LA FUNCION Y SE RECARGA EL CARRO
     if (isset($_GET["id_producto"]) && $_GET["id_producto"] != NULL) {
-        $conexion->addToCart($_GET["id_producto"], $carrito);
+        $qty = isset($_GET['qty']) ? $_GET['qty'] : null;
+        $conexion->addToCart($_GET["id_producto"], $carrito, $qty);
         unset($_GET["id_producto"]);
         header("Location: cart.php");
     }

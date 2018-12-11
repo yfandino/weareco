@@ -108,9 +108,28 @@ class ConexionBD {
     		echo "<div class='error'>Ops.. Parece que ha ocurrido un error.</div>";
     	}
     }
+
+    public function getProductById($id) {
+        $query = "SELECT * FROM productos WHERE id_producto = $id";
+        try {
+            $resultado = mysqli_query($this->conexion, $query);
+            if (mysqli_num_rows($resultado) == 0) {
+                throw new Exception('El producto que está intentando ver no existe.');
+            }
+            while ($fila = mysqli_fetch_assoc($resultado)) {
+                $producto = new Producto($fila["id_producto"],$fila["nombre"],
+                    $fila["descripcion"], $fila["stock"],
+                    $fila["precio"], $fila["img"]);
+            }
+            return $producto;
+        } catch (Exception $e) {
+            $_SESSION['error'] = $e->getMessage();
+            return false;
+        }
+    }
     
     // Metodo para obtener producto por ID y agregarlo al carrito
-    public function addToCart($id, $carrito) {
+    public function addToCart($id, $carrito, $qty = null) {
     	$query = "SELECT * FROM productos WHERE id_producto = $id;";
     	try {
     		$resultado = mysqli_query($this->conexion, $query);
@@ -118,6 +137,10 @@ class ConexionBD {
     		$producto = $producto = new Producto($fila["id_producto"],$fila["nombre"],
     				                             $fila["descripcion"], $fila["stock"],
     				                             $fila["precio"], $fila["img"]);
+    		var_dump($producto);
+    		if ($producto && $qty) {
+    		    $producto->setCantidad($qty);
+            }
     		if (isset($carrito[$producto->getId()])) {
     		    $producto = $carrito[$producto->getId()];
     		    $producto->setCantidad($producto->getCantidad()+1);
