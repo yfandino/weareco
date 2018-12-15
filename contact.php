@@ -18,8 +18,8 @@
     tortor sed elementum. Vestibulum sollicitudin lacus vitae orci vehicula dignissim. In sit amet lacus in libero placerat hendrerit. Nam scelerisque porta quam,
     non accumsan ex ultricies sit amet.</p>
 <div class="contacto">
-<div class="container">
-  <form action="/action_page.php">
+<div class="container2">
+  <form action="mailto:info@weareco.com">
     <label for="fname">Nombre</label>
     <input type="text" id="fname" name="firstname" placeholder="Escribre aquí tu nombre..">
     <label for="lname">Appellidos</label>

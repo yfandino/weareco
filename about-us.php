@@ -1,4 +1,3 @@
-<link type="text/css" rel="stylesheet" href="../css/aboutus.css">
 <link type="text/css" rel="stylesheet" href="../fpdf.css">
 
 
@@ -53,8 +52,12 @@
         <p class="p-card">example@example.com</p>
         <p><a href="mailto:webmaster@example.com"><button class="button">Contacta</button></p></a>
       </div>
+
+
     </div>
   </div>
+
+  
 </div>
 </div>
 </body>

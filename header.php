@@ -3,10 +3,9 @@
     <nav class="menu">
         <ul>
             <li><a href="index.php">Inicio</a></li>
-            <li><a href="">Nosotros</a></li>
+            <li><a href="about-us.php">Nosotros</a></li>
             <li><a href="productos.php">Productos</a></li>
-            <li><a href="">Ofertas</a></li>
-            <li><a href="">Contacto</a></li>
+            <li><a href="contact.php">Contacto</a></li>
         </ul>
     </nav>
     <div class="cart">
