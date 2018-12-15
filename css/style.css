@@ -354,3 +354,141 @@ input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
 	opacity: 1;
 }
+
+/* SOBRE NOSOTROS */
+
+html {
+	box-sizing: border-box;
+	margin: auto;
+  }
+
+  .team {
+	margin-left: 10%;
+  }
+  
+  *, *:before, *:after {
+	box-sizing: inherit;
+  }
+  
+  .column {
+	float: left;
+	width: 30%;
+	margin-bottom: 16px;
+	padding: 0 8px;
+	padding: 0px 30px;
+  }
+  
+  .card {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	height: auto;
+
+  }
+  
+  .container {
+	padding: 0 16px;
+  }
+  
+  .container::after, .row::after {
+	content: "";
+	clear: both;
+	display: table;
+  }
+  
+  .title {
+	color: grey;
+  }
+  
+  .button {
+	border: none;
+	outline: 0;
+	display: inline-block;
+	padding: 8px;
+	color: white;
+	background-color:  #45a049;
+	text-align: center;
+	cursor: pointer;
+	width: 100%;
+	height: 50px;
+	margin-bottom: 20px;
+  }
+  
+  .button:hover {
+	background-color: #00C853;
+  }
+
+  .about-p {
+	text-align: center;
+	width: 70%;
+	vertical-align: middle;
+	margin-left: 15%;
+	margin-bottom: 40px;
+	line-height: 25px;
+  }
+
+  .about-title { 
+	  text-align: center;
+	  align-content: center;
+	  font-size: 40px;
+	  margin-bottom: 30px;
+  }
+
+  .about-name {
+	  font-size: 20px;
+	  margin-top: 20px;
+	  margin-bottom: 5px;
+	  color: #00C853;
+  }
+
+  .title {
+	  margin-bottom: 20px;
+	  font-weight: 600;
+  }
+
+.p-card {
+	margin-bottom: 20px;
+}
+
+
+
+/* CONTACT */
+
+body 
+* {box-sizing: border-box;}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container2 {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  width: 60%;
+ margin-left: 20%;
+  
+}
+
+
+.contact { 
+	margin-left: margin-left: 20%;
+}
+</style>
